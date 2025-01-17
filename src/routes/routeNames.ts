@@ -1,4 +1,4 @@
 export const ROUTES = {
   '/': '/',
-  videos: 'videos',
+  contents: 'contents',
 };
