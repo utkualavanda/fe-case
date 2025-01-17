@@ -1,32 +1,61 @@
+import typescript from '@typescript-eslint/eslint-plugin';
+import parser from '@typescript-eslint/parser';
+import importPlugin from 'eslint-plugin-import';
+import jsxA11y from 'eslint-plugin-jsx-a11y';
+import react from 'eslint-plugin-react';
+import reactHooks from 'eslint-plugin-react-hooks';
+
 export default [
   {
-    files: ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"],
+    files: ['**/*.{js,jsx,ts,tsx}'],
     languageOptions: {
-      ecmaVersion: "latest",
-      sourceType: "module",
-      parser: "@typescript-eslint/parser",
+      parser: parser,
       parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
         ecmaFeatures: {
           jsx: true,
         },
       },
     },
     plugins: {
-      react: require("eslint-plugin-react"),
-      "react-hooks": require("eslint-plugin-react-hooks"),
+      '@typescript-eslint': typescript,
+      react,
+      'react-hooks': reactHooks,
+      'jsx-a11y': jsxA11y,
+      import: importPlugin,
     },
-    extends: [
-      "eslint:recommended",
-      "airbnb",
-      "plugin:react/recommended",
-      "plugin:react-hooks/recommended",
-    ],
     rules: {
-      "react/jsx-filename-extension": [
-        1,
-        { extensions: [".js", ".jsx", ".tsx"] },
+      // TypeScript Rules
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { argsIgnorePattern: '^_' },
       ],
-      "react/react-in-jsx-scope": "off",
+      '@typescript-eslint/explicit-module-boundary-types': 'off',
+
+      // React Rules
+      'react/react-in-jsx-scope': 'off',
+      'react/prop-types': 'off',
+
+      // React Hooks
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'warn',
+
+      // JSX Accessibility
+      'jsx-a11y/anchor-is-valid': 'warn',
+
+      // Import Rules
+      'import/order': [
+        'error',
+        {
+          alphabetize: { order: 'asc', caseInsensitive: true },
+        },
+      ],
+    },
+    settings: {
+      react: {
+        version: 'detect',
+      },
     },
   },
 ];
