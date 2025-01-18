@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouteObject } from 'react-router-dom';
 import { LazyContentDetailsPage } from '../features/Content/pages/ContentDetailsPage/LazyContentDetailsPage';
 import { LazyContentsPage } from '../features/Content/pages/ContentsPage/LazyContentsPage';
+import { LazySomethingWentWrongPage } from '../features/Error/pages/SomethingWentWrong/LazySomethingWentWrongPage';
 import { LazyRootPage } from '../features/Root/pages/RootPage/LazyRootPage';
 import { ROUTES } from './routeNames';
 
@@ -17,6 +18,7 @@ const routeObject: RouteObject[] = [
       },
     ],
     path: ROUTES['/'],
+    errorElement: <LazySomethingWentWrongPage />,
     element: <LazyRootPage />,
   },
   {
