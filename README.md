@@ -67,8 +67,6 @@ yarn build
 To preview the production build:
 
 ```bash
-npm run preview
-# or
 yarn preview
 ```
 
